@@ -147,7 +147,28 @@ return {
       local servers = {
         -- clangd = {},
         html = {},
-        gopls = {},
+        gopls = {
+          on_attach = function(_, bufnr)
+            vim.api.nvim_create_autocmd('BufWritePre', {
+              buffer = bufnr,
+              callback = function()
+                vim.lsp.buf.code_action {
+                  context = { only = { 'source.organizeImports' }, diagnostics = {} },
+                  apply = true,
+                }
+                vim.lsp.buf.format { async = false }
+              end,
+            })
+          end,
+          settings = {
+            gopls = {
+              analyses = {
+                unusedparams = true,
+              },
+              staticcheck = true,
+            },
+          },
+        },
         pyright = {},
         ruby_lsp = {},
         -- rust_analyzer = {},
@@ -168,6 +189,12 @@ return {
             Lua = {
               completion = {
                 callSnippet = 'Replace',
+              },
+              runtime = {
+                version = 'LuaJIT',
+              },
+              workspace = {
+                library = vim.api.nvim_get_runtime_file('lua', true),
               },
               -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
               -- diagnostics = { disable = { 'missing-fields' } },
