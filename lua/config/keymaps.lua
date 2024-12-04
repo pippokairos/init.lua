@@ -43,3 +43,12 @@ vim.keymap.set('n', 'N', 'Nzz')
 -- Preserve clipboard
 vim.keymap.set('x', '<leader>p', [["_dP]])
 vim.keymap.set({ 'n', 'v' }, '<leader>d', '"_d')
+
+-- Search and replace word
+vim.keymap.set('n', '<leader>ss', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+
+-- Run PlenaryTestFile on the current buffer
+vim.keymap.set('n', '<leader>tf', '<Plug>PlenaryTestFile', { desc = 'Plenary [T]est [F]ile', noremap = false, silent = false })
+
+-- Run current go file
+vim.keymap.set('n', '<leader>rg', '<cmd>:!go run %<CR>', { desc = '[R]un [G]o file' })
