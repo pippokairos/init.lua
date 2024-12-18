@@ -1,13 +1,25 @@
 return {
   {
     'rafi/awesome-vim-colorschemes',
-    priority = 1000, -- Make sure to load this before all the other start plugins.
-    init = function()
-      -- Load the colorscheme here.
-      vim.cmd.colorscheme 'hybrid_reverse'
+    -- priority = 1000,
+    -- init = function()
+    --   vim.cmd.colorscheme 'hybrid_reverse'
+    --   vim.cmd.hi 'Comment gui=none'
+    -- end,
+  },
 
-      -- Configure highlights
-      vim.cmd.hi 'Comment gui=none'
+  { 'folke/tokyonight.nvim' },
+  { 'rose-pine/neovim' },
+  {
+    'catppuccin/nvim',
+    priority = 1000,
+    init = function()
+      vim.cmd.colorscheme 'catppuccin-mocha'
+    end,
+    config = function()
+      require('catppuccin').setup {
+        no_italic = true,
+      }
     end,
   },
 }
