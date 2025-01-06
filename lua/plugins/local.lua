@@ -1,6 +1,6 @@
 return {
   name = 'rspec-runner',
-  dir = '~/private/rspec-runner.nvim',
+  dir = '~/personal/rspec-runner.nvim',
   dependencies = { 'nvim-lua/plenary.nvim' },
   dev = true,
   init = function()
