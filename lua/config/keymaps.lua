@@ -53,3 +53,10 @@ vim.keymap.set('n', '<leader>tf', '<Plug>PlenaryTestFile', { desc = 'Plenary [T]
 
 -- Run current go file
 vim.keymap.set('n', '<leader>rg', '<cmd>:!go run %<CR>', { desc = '[R]un [G]o file' })
+
+-- Run current go test folder file
+vim.keymap.set('n', '<leader>rt', function()
+  local file_path = vim.fn.expand '%'
+  local folder_path = vim.fn.fnamemodify(file_path, ':h')
+  vim.cmd('!go test ./' .. folder_path)
+end, { desc = '[R]un Go [T]ests' })

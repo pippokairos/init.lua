@@ -28,5 +28,5 @@ vim.opt.listchars = { tab = '  ', trail = '·', nbsp = '␣' }
 vim.opt.inccommand = 'split'
 vim.opt.cursorline = true
 vim.opt.scrolloff = 10
-vim.opt.guifont = 'MesloLGS NF:h14'
+vim.opt.guifont = 'FiraCode Nerd Font:h14'
 vim.opt.termguicolors = true

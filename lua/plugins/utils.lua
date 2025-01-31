@@ -31,7 +31,8 @@ return {
     config = function()
       require('nvim-tree').setup {}
 
-      vim.keymap.set('n', '<leader>tt', '<cmd>NvimTreeToggle<CR>', { desc = 'Toggle [T]ree' })
+      vim.keymap.set('n', '<leader>tt', '<cmd>NvimTreeToggle<CR>', { desc = '[T]oggle [T]ree' })
+      vim.keymap.set('n', '<leader>tf', ':NvimTreeFindFileToggle<CR>', { desc = '[T]oggle Tree and focus on current [F]ile' })
     end,
   },
 
