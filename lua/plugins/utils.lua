@@ -21,20 +21,20 @@ return {
     end,
   },
 
-  {
-    'nvim-tree/nvim-tree.lua',
-    version = '*',
-    lazy = false,
-    dependencies = {
-      'nvim-tree/nvim-web-devicons',
-    },
-    config = function()
-      require('nvim-tree').setup {}
-
-      vim.keymap.set('n', '<leader>tt', '<cmd>NvimTreeToggle<CR>', { desc = '[T]oggle [T]ree' })
-      vim.keymap.set('n', '<leader>tf', ':NvimTreeFindFileToggle<CR>', { desc = '[T]oggle Tree and focus on current [F]ile' })
-    end,
-  },
+  -- {
+  --   'nvim-tree/nvim-tree.lua',
+  --   version = '*',
+  --   lazy = false,
+  --   dependencies = {
+  --     'nvim-tree/nvim-web-devicons',
+  --   },
+  --   config = function()
+  --     require('nvim-tree').setup {}
+  --
+  --     vim.keymap.set('n', '<leader>tt', '<cmd>NvimTreeToggle<CR>', { desc = '[T]oggle [T]ree' })
+  --     vim.keymap.set('n', '<leader>tf', ':NvimTreeFindFileToggle<CR>', { desc = '[T]oggle Tree and focus on current [F]ile' })
+  --   end,
+  -- },
 
   { -- Useful plugin to show you pending keybinds.
     'folke/which-key.nvim',
