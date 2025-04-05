@@ -32,15 +32,6 @@ return {
       local capabilities = require('blink.cmp').get_lsp_capabilities()
       require('lspconfig').lua_ls.setup { capabilities = capabilities }
 
-      -- Change diagnostic symbols in the sign column (gutter)
-      if vim.g.have_nerd_font then
-        local signs = { Error = '', Warn = '', Hint = '', Info = '' }
-        for type, icon in pairs(signs) do
-          local hl = 'DiagnosticSign' .. type
-          vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-        end
-      end
-
       -- Enable the following language servers
       --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
       --
@@ -58,7 +49,7 @@ return {
             vim.api.nvim_create_autocmd('BufWritePre', {
               buffer = bufnr,
               callback = function()
-                local params = vim.lsp.util.make_range_params()
+                local params = vim.lsp.util.make_range_params(0, 'utf-8')
                 params.context = { only = { 'source.organizeImports' }, diagnostics = {} }
 
                 vim.lsp.buf_request(0, 'textDocument/codeAction', params, function(err, result, _, _)
