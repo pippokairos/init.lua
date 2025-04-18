@@ -38,6 +38,17 @@ vim.keymap.set('n', '<leader>tf', '<Plug>PlenaryTestFile', { desc = 'Plenary [T]
 
 -- Go
 
+-- Macros
+local esc = vim.api.nvim_replace_termcodes('<Esc>', true, true, true)
+vim.api.nvim_create_augroup('GoMacro', { clear = true })
+vim.api.nvim_create_autocmd('FileType', {
+  group = 'GoMacro',
+  pattern = { 'go' },
+  callback = function()
+    vim.fn.setreg('p', 'yofmt.Println("' .. esc .. 'pa:", ' .. esc .. 'pa)' .. esc .. '')
+  end,
+})
+
 -- Run current go file
 vim.keymap.set('n', '<leader>rg', '<cmd>:!go run %<CR>', { desc = '[R]un [G]o file' })
 
