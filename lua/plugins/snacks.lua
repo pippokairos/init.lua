@@ -210,6 +210,24 @@ return {
       desc = 'Grep',
     },
     {
+      '<leader>sG',
+      function()
+        vim.ui.input({
+          prompt = 'Grep File Pattern (rg glob): ',
+        }, function(pattern)
+          if pattern and pattern ~= '' then
+            print("Grep with pattern: -g '" .. pattern .. "'")
+            require('snacks').picker.grep {
+              args = { '-g', pattern },
+            }
+          else
+            print 'Grep cancelled or no pattern entered.'
+          end
+        end)
+      end,
+      desc = 'Grep Gile Pattern',
+    },
+    {
       '<leader>sw',
       function()
         Snacks.picker.grep_word()
@@ -238,13 +256,6 @@ return {
         Snacks.picker.autocmds()
       end,
       desc = 'Autocmds',
-    },
-    {
-      '<leader>sb',
-      function()
-        Snacks.picker.lines()
-      end,
-      desc = 'Buffer Lines',
     },
     {
       '<leader>sc',
@@ -481,13 +492,13 @@ return {
     --   desc = 'Git Browse',
     --   mode = { 'n', 'v' },
     -- },
-    {
-      '<leader>gg',
-      function()
-        Snacks.lazygit()
-      end,
-      desc = 'Lazygit',
-    },
+    -- {
+    --   '<leader>gg',
+    --   function()
+    --     Snacks.lazygit()
+    --   end,
+    --   desc = 'Lazygit',
+    -- },
     {
       '<leader>un',
       function()
