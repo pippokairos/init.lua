@@ -8,6 +8,11 @@ return {
     dashboard = {
       sections = {
         { section = 'header' },
+        {
+          section = 'terminal',
+          cmd = 'curl "wttr.in/Utrecht?format=2"',
+          indent = 18,
+        },
         { section = 'startup' },
       },
     },
@@ -225,7 +230,7 @@ return {
           end
         end)
       end,
-      desc = 'Grep Gile Pattern',
+      desc = 'Grep File Pattern',
     },
     {
       '<leader>sw',
