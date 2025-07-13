@@ -21,22 +21,7 @@ return {
     end,
   },
 
-  -- {
-  --   'nvim-tree/nvim-tree.lua',
-  --   version = '*',
-  --   lazy = false,
-  --   dependencies = {
-  --     'nvim-tree/nvim-web-devicons',
-  --   },
-  --   config = function()
-  --     require('nvim-tree').setup {}
-  --
-  --     vim.keymap.set('n', '<leader>tt', '<cmd>NvimTreeToggle<CR>', { desc = '[T]oggle [T]ree' })
-  --     vim.keymap.set('n', '<leader>tf', ':NvimTreeFindFileToggle<CR>', { desc = '[T]oggle Tree and focus on current [F]ile' })
-  --   end,
-  -- },
-
-  { -- Useful plugin to show you pending keybinds.
+  {                     -- Useful plugin to show you pending keybinds.
     'folke/which-key.nvim',
     event = 'VimEnter', -- Sets the loading event to 'VimEnter'
     opts = {
@@ -79,16 +64,16 @@ return {
 
       -- Document existing key chains
       spec = {
-        { '<leader>c', group = '[C]ode', mode = { 'n', 'x' } },
+        { '<leader>c', group = '[C]ode',       mode = { 'n', 'x' } },
         { '<leader>d', group = '[D]iagnostics' },
         { '<leader>D', group = '[D]ocument' },
         { '<leader>r', group = '[R]ename' },
         { '<leader>s', group = '[S]earch' },
         { '<leader>w', group = '[W]orkspace' },
         { '<leader>t', group = '[T]oggle' },
-        { '<leader>H', group = 'Git [H]unk', mode = { 'n', 'v' } },
-        { '<leader>g', group = '[G]it', mode = { 'n', 'v' } },
-        { '<leader>o', group = '[O]pen', mode = { 'n', 'v' } },
+        { '<leader>H', group = 'Git [H]unk',   mode = { 'n', 'v' } },
+        { '<leader>g', group = '[G]it',        mode = { 'n', 'v' } },
+        { '<leader>o', group = '[O]pen',       mode = { 'n', 'v' } },
       },
     },
   },
@@ -101,6 +86,7 @@ return {
       {
         '<leader>f',
         function()
+          -- require('conform').format { async = false, timeout_ms = 500, lsp_format = 'fallback' }
           require('conform').format { async = true, lsp_format = 'fallback' }
         end,
         mode = '',
@@ -121,17 +107,20 @@ return {
           lsp_format_opt = 'fallback'
         end
         return {
-          timeout_ms = 500,
+          -- async = false,
+          timeout_ms = 3000,
           lsp_format = lsp_format_opt,
         }
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
-        -- Conform can also run multiple formatters sequentially
-        -- python = { "isort", "black" },
-        --
-        -- You can use 'stop_after_first' to run the first available formatter from the list
-        -- javascript = { "prettierd", "prettier", stop_after_first = true },
+        go = { 'golangci-lint' },
+        javascript = { 'prettier' },
+        html = { 'prettier' },
+        css = { 'prettier' },
+        json = { 'prettier' },
+        yaml = { 'prettier' },
+        markdown = { 'prettier' },
       },
     },
   },

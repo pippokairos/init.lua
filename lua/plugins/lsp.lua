@@ -135,6 +135,20 @@ return {
     },
   }),
 
+  vim.lsp.config('lua_ls', {
+    settings = {
+      Lua = {
+        workspace = {
+          checkThirdParty = false,
+          telemetry = { enable = false },
+          library = {
+            "${3rd}/love2d/library"
+          }
+        },
+      },
+    },
+  }),
+
   -- Autoimport and format Go files on save
   vim.api.nvim_create_autocmd('BufWritePre', {
     pattern = '*.go',
