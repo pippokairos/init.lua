@@ -6,6 +6,9 @@ return {
   -- { 'ribru17/bamboo.nvim' },
   -- { 'pauchiner/pastelnight.nvim' },
   -- { 'projekt0n/github-nvim-theme' },
+  -- { "vague2k/vague.nvim" },
+  -- { "wtfox/jellybeans.nvim" },
+  -- { "EdenEast/nightfox.nvim" },
   {
     'catppuccin/nvim',
     priority = 1000,

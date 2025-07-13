@@ -18,7 +18,8 @@ vim.keymap.set('n', '<leader>cp', function()
   vim.notify 'File path copied to clipboard'
 end, { desc = 'Copy [P]ath to clipboard' })
 
-vim.keymap.set('n', '<leader>ob', '<cmd>!open -a "Google Chrome" "%"<cr>', { desc = '[O]pen the current file in [B]rowser' })
+vim.keymap.set('n', '<leader>ob', '<cmd>!open -a "Google Chrome" "%"<cr>',
+  { desc = '[O]pen the current file in [B]rowser' })
 
 -- Move while in insert mode
 vim.keymap.set('i', '<C-j>', '<Down>', { desc = 'Move down' })
@@ -33,8 +34,12 @@ vim.keymap.set({ 'n', 'v' }, '<leader>d', '"_d')
 -- Search and replace word
 vim.keymap.set('n', '<leader>sar', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
+-- Duplicate line and comment the first
+vim.keymap.set('n', 'ycc', 'yygccp', { remap = true })
+
 -- Run PlenaryTestFile on the current buffer
-vim.keymap.set('n', '<leader>tf', '<Plug>PlenaryTestFile', { desc = 'Plenary [T]est [F]ile', noremap = false, silent = false })
+vim.keymap.set('n', '<leader>tf', '<Plug>PlenaryTestFile',
+  { desc = 'Plenary [T]est [F]ile', noremap = false, silent = false })
 
 -- Go
 
@@ -46,6 +51,7 @@ vim.api.nvim_create_autocmd('FileType', {
   pattern = { 'go' },
   callback = function()
     vim.fn.setreg('p', 'yofmt.Println("' .. esc .. 'pa:", ' .. esc .. 'pa)' .. esc .. '')
+    -- vim.fn.setreg('P', 'ykifmt.Println("' .. esc .. 'pa:", ' .. esc .. 'pa)' .. esc .. '')
   end,
 })
 
@@ -58,3 +64,10 @@ vim.keymap.set('n', '<leader>rt', function()
   local folder_path = vim.fn.fnamemodify(file_path, ':h')
   vim.cmd('!go test ./' .. folder_path)
 end, { desc = '[R]un Go [T]ests' })
+
+-- Run love2d
+vim.keymap.set('n', '<leader>l', function()
+  local file_path = vim.fn.expand '%'
+  local folder_path = vim.fn.fnamemodify(file_path, ':h')
+  vim.cmd('!love ' .. folder_path)
+end, { desc = '[R]un [L]ove2D' })

@@ -30,6 +30,7 @@ vim.opt.cursorline = true
 vim.opt.scrolloff = 10
 vim.opt.guifont = 'FiraCode Nerd Font:h14'
 vim.opt.termguicolors = true
+vim.opt.colorcolumn = '120'
 
 vim.diagnostic.config {
   signs = {
