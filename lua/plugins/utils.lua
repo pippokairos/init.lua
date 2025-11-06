@@ -17,7 +17,7 @@ return {
   {
     'mbbill/undotree', -- Visualize your undo tree
     config = function()
-      vim.keymap.set('n', '<leader>u', '<cmd>UndotreeToggle<CR>', { desc = 'Toggle [U]ndo tree' })
+      vim.keymap.set('n', '<leader>ut', '<cmd>UndotreeToggle<CR>', { desc = 'Toggle [U]ndo [T]ree' })
     end,
   },
 
@@ -84,13 +84,13 @@ return {
     cmd = { 'ConformInfo' },
     keys = {
       {
-        '<leader>f',
+        '<leader>ft',
         function()
           -- require('conform').format { async = false, timeout_ms = 500, lsp_format = 'fallback' }
           require('conform').format { async = true, lsp_format = 'fallback' }
         end,
         mode = '',
-        desc = '[F]ormat buffer',
+        desc = '[F]orma[T] buffer',
       },
     },
     opts = {
@@ -113,7 +113,6 @@ return {
         }
       end,
       formatters_by_ft = {
-        lua = { 'stylua' },
         go = { 'golangci-lint' },
         javascript = { 'prettier' },
         html = { 'prettier' },
@@ -121,6 +120,17 @@ return {
         json = { 'prettier' },
         yaml = { 'prettier' },
         markdown = { 'prettier' },
+        sql = { 'sqlfluff' },
+      },
+      formatters = {
+        sqlfluff = {
+          command = "sqlfluff",
+          args = { 'format', '--dialect=postgres', '--nocolor', '-' },
+          stdin = true,
+          cwd = function()
+            return vim.fn.getcwd()
+          end,
+        },
       },
     },
   },
