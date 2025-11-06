@@ -8,11 +8,6 @@ return {
     dashboard = {
       sections = {
         { section = 'header' },
-        {
-          section = 'terminal',
-          cmd = 'curl "wttr.in/Utrecht?format=2"',
-          indent = 18,
-        },
         { section = 'startup' },
       },
     },
@@ -22,7 +17,7 @@ return {
     input = { enabled = true },
     notifier = {
       enabled = true,
-      timeout = 3000,
+      timeout = 2000,
     },
     picker = { enabled = true },
     quickfile = { enabled = true },
