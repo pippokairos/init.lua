@@ -1,23 +1,29 @@
 -- Clear highlights on search when pressing <Esc> in normal mode
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
+-- Diagnostics
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 vim.keymap.set('n', '<leader>do', vim.diagnostic.open_float, { desc = '[D]iagnostic [O]pen float' })
 
+-- Exit terminal
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
+-- Windows switching
 vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
+-- Save
 vim.keymap.set('n', 'Z<CR>', '<cmd>update<CR>', { desc = 'Save file' })
 
+-- Copy to clipboard
 vim.keymap.set('n', '<leader>cp', function()
   vim.fn.setreg('+', vim.fn.expand '%:p')
   vim.notify 'File path copied to clipboard'
 end, { desc = 'Copy [P]ath to clipboard' })
 
+-- Open in browser
 vim.keymap.set('n', '<leader>ob', '<cmd>!open -a "Google Chrome" "%"<cr>',
   { desc = '[O]pen the current file in [B]rowser' })
 
@@ -26,6 +32,12 @@ vim.keymap.set('i', '<C-j>', '<Down>', { desc = 'Move down' })
 vim.keymap.set('i', '<C-k>', '<Up>', { desc = 'Move up' })
 vim.keymap.set('i', '<C-h>', '<Left>', { desc = 'Move left' })
 vim.keymap.set('i', '<C-l>', '<Right>', { desc = 'Move right' })
+
+-- Keep cursor centered on up-down and occurrences navigation
+-- vim.keymap.set('n', '<C-d>', '<C-d>zz')
+-- vim.keymap.set('n', '<C-u>', '<C-u>zz')
+vim.keymap.set('n', 'n', 'nzzzv')
+vim.keymap.set('n', 'N', 'Nzzzv')
 
 -- Preserve clipboard
 vim.keymap.set('x', '<leader>p', [["_dP]])
@@ -42,6 +54,9 @@ vim.keymap.set('n', '<leader>tf', '<Plug>PlenaryTestFile',
   { desc = 'Plenary [T]est [F]ile', noremap = false, silent = false })
 
 -- Go
+
+-- Go to type definition
+vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition, { desc = '[G]o to [T]ype definition' })
 
 -- Macros
 local esc = vim.api.nvim_replace_termcodes('<Esc>', true, true, true)
