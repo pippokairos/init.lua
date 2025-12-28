@@ -57,6 +57,7 @@ return {
           --   },
           -- },
         },
+        transparent_background = true,
       }
     end,
   },
