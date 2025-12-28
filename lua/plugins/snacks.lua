@@ -15,6 +15,19 @@ return {
     git = { enable = true },
     indent = { enabled = true },
     input = { enabled = true },
+    lazygit = {
+      enabled = true,
+      win = {
+        -- style = "lazygit", -- predefined style
+        -- Or customize:
+        width = 0.99,
+        height = 0.99,
+        -- border = "rounded",
+      },
+      cmd = "lazygit",
+      args = {},
+      configure = true,
+    },
     notifier = {
       enabled = true,
       timeout = 2000,
@@ -492,13 +505,13 @@ return {
     --   desc = 'Git Browse',
     --   mode = { 'n', 'v' },
     -- },
-    -- {
-    --   '<leader>gg',
-    --   function()
-    --     Snacks.lazygit()
-    --   end,
-    --   desc = 'Lazygit',
-    -- },
+    {
+      '<leader>gg',
+      function()
+        Snacks.lazygit()
+      end,
+      desc = 'Lazygit',
+    },
     {
       '<leader>un',
       function()
