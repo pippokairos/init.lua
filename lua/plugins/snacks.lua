@@ -12,7 +12,7 @@ return {
       },
     },
     explorer = { enabled = true },
-    git = { enable = true },
+    git = { enabled = true },
     indent = { enabled = true },
     input = { enabled = true },
     lazygit = {
@@ -477,13 +477,6 @@ return {
       desc = 'Select Scratch Buffer',
     },
     {
-      '<leader>n',
-      function()
-        Snacks.notifier.show_history()
-      end,
-      desc = 'Notification History',
-    },
-    {
       '<leader>bd',
       function()
         Snacks.bufdelete()
@@ -497,14 +490,6 @@ return {
       end,
       desc = 'Rename File',
     },
-    -- {
-    --   '<leader>gB',
-    --   function()
-    --     Snacks.gitbrowse()
-    --   end,
-    --   desc = 'Git Browse',
-    --   mode = { 'n', 'v' },
-    -- },
     {
       '<leader>gg',
       function()

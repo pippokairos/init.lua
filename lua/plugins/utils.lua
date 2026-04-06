@@ -1,24 +1,12 @@
 return {
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
 
-  {
-    'numToStr/Comment.nvim',
-    opts = {},
-  },
-
   -- Highlight todo, notes, etc in comments
   {
     'folke/todo-comments.nvim',
     event = 'VimEnter',
     dependencies = { 'nvim-lua/plenary.nvim' },
     opts = { signs = false },
-  },
-
-  {
-    'mbbill/undotree', -- Visualize your undo tree
-    config = function()
-      vim.keymap.set('n', '<leader>ut', '<cmd>UndotreeToggle<CR>', { desc = 'Toggle [U]ndo [T]ree' })
-    end,
   },
 
   {                     -- Useful plugin to show you pending keybinds.
@@ -64,16 +52,11 @@ return {
 
       -- Document existing key chains
       spec = {
-        { '<leader>c', group = '[C]ode',       mode = { 'n', 'x' } },
-        { '<leader>d', group = '[D]iagnostics' },
-        { '<leader>D', group = '[D]ocument' },
-        { '<leader>r', group = '[R]ename' },
+        { '<leader>c', group = '[C]ode',  mode = { 'n', 'x' } },
+        { '<leader>r', group = '[R]un' },
         { '<leader>s', group = '[S]earch' },
-        { '<leader>w', group = '[W]orkspace' },
-        { '<leader>t', group = '[T]oggle' },
-        { '<leader>H', group = 'Git [H]unk',   mode = { 'n', 'v' } },
-        { '<leader>g', group = '[G]it',        mode = { 'n', 'v' } },
-        { '<leader>o', group = '[O]pen',       mode = { 'n', 'v' } },
+        { '<leader>g', group = '[G]it',   mode = { 'n', 'v' } },
+        { '<leader>o', group = '[O]pen',  mode = { 'n', 'v' } },
       },
     },
   },
@@ -84,13 +67,12 @@ return {
     cmd = { 'ConformInfo' },
     keys = {
       {
-        '<leader>ft',
+        '<leader>cf',
         function()
-          -- require('conform').format { async = false, timeout_ms = 500, lsp_format = 'fallback' }
           require('conform').format { async = true, lsp_format = 'fallback' }
         end,
         mode = '',
-        desc = '[F]orma[T] buffer',
+        desc = '[C]ode [F]ormat buffer',
       },
     },
     opts = {
@@ -107,13 +89,11 @@ return {
           lsp_format_opt = 'fallback'
         end
         return {
-          -- async = false,
           timeout_ms = 3000,
           lsp_format = lsp_format_opt,
         }
       end,
       formatters_by_ft = {
-        go = { 'golangci-lint' },
         javascript = { 'prettier' },
         html = { 'prettier' },
         css = { 'prettier' },
