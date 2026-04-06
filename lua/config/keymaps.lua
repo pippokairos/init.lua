@@ -66,7 +66,7 @@ vim.api.nvim_create_autocmd('FileType', {
   pattern = { 'go' },
   callback = function()
     vim.fn.setreg('p', 'yofmt.Println("' .. esc .. 'pa:", ' .. esc .. 'pa)' .. esc .. '')
-    -- vim.fn.setreg('P', 'ykifmt.Println("' .. esc .. 'pa:", ' .. esc .. 'pa)' .. esc .. '')
+    vim.fn.setreg('v', 'yofmt.Printf("' .. esc .. 'pa: %#v\\n", ' .. esc .. 'pa)' .. esc .. '')
   end,
 })
 
