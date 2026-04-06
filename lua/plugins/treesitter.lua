@@ -1,26 +1,16 @@
+-- The following must always be installed: "c", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline"
+local languages = {
+  'bash', 'c', 'diff', 'go', 'javascript', 'typescript', 'html', 'lua', 'luadoc', 'markdown',
+  'markdown_inline', 'query', 'ruby', 'vim', 'vimdoc', 'json', 'yaml',
+}
+
 return {
-  { -- Highlight, edit, and navigate code
+  {
     'nvim-treesitter/nvim-treesitter',
+    branch = 'main',
     build = ':TSUpdate',
-    main = 'nvim-treesitter.configs', -- Sets main module to use for opts
     opts = {
-      -- The following must always be installed: "c", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline"
-      ensure_installed = {
-        'bash',
-        'c',
-        'diff',
-        'go',
-        'html',
-        'lua',
-        'luadoc',
-        'markdown',
-        'markdown_inline',
-        'query',
-        'ruby',
-        'vim',
-        'vimdoc',
-      },
-      -- Autoinstall languages that are not installed
+      ensure_installed = languages,
       auto_install = true,
       highlight = {
         enable = true,
@@ -31,5 +21,15 @@ return {
       },
       indent = { enable = true, disable = { 'ruby' } },
     },
+    config = function(_, opts)
+      require('nvim-treesitter').setup(opts)
+      vim.api.nvim_create_autocmd('FileType', {
+        desc = 'Set up nvim-treesitter',
+        pattern = languages,
+        callback = function()
+          vim.treesitter.start()
+        end,
+      })
+    end,
   },
 }
