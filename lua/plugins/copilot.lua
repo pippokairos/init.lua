@@ -20,11 +20,13 @@ return {
   event = "InsertEnter",
   config = function()
     require('copilot').setup {
+      copilot_node_command = '/opt/homebrew/opt/node@22/bin/node',
       suggestion = {
         enabled = true,
-        auto_trigger = false,
+        auto_trigger = true,
+        hide_during_completion = false,
         keymap = {
-          accept = '<Tab>',
+          accept = false, -- handled by blink.cmp Tab keymap
           accept_word = false,
           accept_line = false,
           next = '<C-CR>',
