@@ -100,6 +100,7 @@ return {
         json = { 'prettier' },
         yaml = { 'prettier' },
         markdown = { 'prettier' },
+        ruby = { 'rubocop' },
         sql = { 'sqlfluff' },
       },
       formatters = {
