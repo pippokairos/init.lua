@@ -29,7 +29,6 @@ return {
         'jsonls',
         'lua_ls',
         'pylsp',
-        'ruby_lsp',
       },
       automatic_installation = true,
     },

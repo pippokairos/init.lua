@@ -8,13 +8,15 @@ vim.lsp.config('gopls', {
   },
 })
 
-vim.lsp.config("ruby_lsp", {
+vim.lsp.config('ruby_lsp', {
+  cmd = { 'ruby-lsp' },
   on_attach = function(client, _)
-    -- Disable Ruby-lsp's semantic tokens to avoid noisy
-    -- race condition between ruby-lsp and Neovim's LSP client
+    -- Treesitter owns highlighting; ruby-lsp semantic tokens fight it.
     client.server_capabilities.semanticTokensProvider = nil
   end,
 })
+-- Not installed via Mason (ABI-bound gems); enable explicitly so it attaches.
+vim.lsp.enable 'ruby_lsp'
 
 vim.lsp.config('lua_ls', {
   settings = {

@@ -104,6 +104,13 @@ return {
         sql = { 'sqlfluff' },
       },
       formatters = {
+        rubocop = {
+          command = 'bundle',
+          prepend_args = { 'exec', 'rubocop' },
+          condition = function(_, ctx)
+            return vim.fs.find('Gemfile', { path = ctx.filename, upward = true })[1] ~= nil
+          end,
+        },
         sqlfluff = {
           command = "sqlfluff",
           args = { 'format', '--dialect=postgres', '--nocolor', '-' },

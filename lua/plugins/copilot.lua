@@ -20,7 +20,6 @@ return {
   event = "InsertEnter",
   config = function()
     require('copilot').setup {
-      copilot_node_command = '/opt/homebrew/opt/node@22/bin/node',
       suggestion = {
         enabled = true,
         auto_trigger = true,
