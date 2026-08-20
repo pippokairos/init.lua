@@ -49,10 +49,6 @@ vim.keymap.set('n', '<leader>sar', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left
 -- Duplicate line and comment the first
 vim.keymap.set('n', 'ycc', 'yygccp', { remap = true })
 
--- Run PlenaryTestFile on the current buffer
-vim.keymap.set('n', '<leader>tf', '<Plug>PlenaryTestFile',
-  { desc = 'Plenary [T]est [F]ile', noremap = false, silent = false })
-
 -- Go
 
 -- Go to type definition
@@ -80,9 +76,21 @@ vim.keymap.set('n', '<leader>rt', function()
   vim.cmd('!go test ./' .. folder_path)
 end, { desc = '[R]un Go [T]ests' })
 
+-- Lua
+
+-- Run PlenaryTestFile on the current buffer
+vim.keymap.set('n', '<leader>tf', '<Plug>PlenaryTestFile',
+  { desc = 'Plenary [T]est [F]ile', noremap = false, silent = false })
+
 -- Run love2d
 vim.keymap.set('n', '<leader>l', function()
   local file_path = vim.fn.expand '%'
   local folder_path = vim.fn.fnamemodify(file_path, ':h')
   vim.cmd('!love ' .. folder_path)
 end, { desc = '[R]un [L]ove2D' })
+
+-- JSON
+
+vim.keymap.set('n', '<leader>jq', function()
+  vim.cmd('%!jq .')
+end, { desc = '[J][Q] format JSON' })
